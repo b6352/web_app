@@ -16,9 +16,12 @@
                         <div class="product_list">
                             <div class="product_details">
                                 <h4>{{$product->product_name}}</h4>
-                                <a href="cart.index.{{$product->id}}."><img src="image/{{$product->product_image}}.jpg" alt="" /></a>
+                                <a href=""><img src="image/{{$product->product_image}}.jpg" alt="" /></a>
                                 <h6>{{number_format($product->product_price)}}円</h6>
                                 <h6>{{$product->product_detail}}</h6>
+                                <h6>{!! link_to(action('CartController@add', ['id' => $product->id , 'qty' => 1]), "カートに追加") !!}</h6>
+                                <h6><a href="cart/index">カートの中身を見る</a></h6>
+
                             </div>
                         </div>
                     </div>

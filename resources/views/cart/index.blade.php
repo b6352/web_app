@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     カートの内容
-
-    <table border='1'>
+    <table border="1" aligne="left">
         <thead>
         <tr>
             <th>商品コード</th>
@@ -36,7 +36,8 @@
     合計金額 {{ Cart::total() }}円<br><br>
 
 
-    {!! link_to('product', '買い物を続ける', ['class' => 'btn btn-primary']) !!}
+    {!! link_to('home', '買い物を続ける', ['class' => 'btn btn-primary']) !!}
     <button>購入</button>
     {!! link_to('cart/reset', 'カートクリア', ['class' => 'btn btn-primary']) !!}
+</div>
 @endsection

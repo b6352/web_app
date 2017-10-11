@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Product; // 商品情報モデル
-use \Cart; // カートモデル("gloudemans/shoppingcart"をComposerでインストールした。appフォルダ直下にあるわけではない)
+use App\Product;
+use \Cart;
 
 class CartController extends Controller
 {
@@ -24,7 +24,7 @@ class CartController extends Controller
                 'name' => $product->product_name,
                 'qty' => $buy_num,
                 'price' => $product->product_price,
-                'options' => ['product_detail' => $product->product_detail, 'product_remarks' => $product->product_remarks]
+                'options' => ['product_detail' => $product->product_detail]
             ]
         ]);
 
@@ -38,6 +38,6 @@ class CartController extends Controller
     {
 
         Cart::destroy();
-        return redirect('product'); // 商品一覧に戻る
+        return redirect('home'); // 商品一覧に戻る
     }
 }

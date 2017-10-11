@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Product; // 商品テーブル
+use App\Products; // 商品テーブル
 
 // 全体のレコード生成
 class DatabaseSeeder extends Seeder

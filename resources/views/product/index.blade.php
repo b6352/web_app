@@ -23,7 +23,7 @@
                     <input type="hidden" name="delete_id" value="<?=$->?>">
                 </form>
             </td>
-            <td>{!! link_to(action('CartController@add', ['id' => $product->id , 'qty' => 1]), $product->product_name) !!}</td>
+            <td>{{!! link_to(action('CartController@add', ['id' => $product->id , 'qty' => 1]), $product->product_name) !!}}</td>
             <td>{{ $product->product_price }} </td>
             <td>{{ $product->product_detail }} </td>
             <td>{{ $product->product_remarks }} </td>
