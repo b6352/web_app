@@ -4,40 +4,39 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use \Cart;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    //カートに商品を追加する
-    public function add($product_id, $buy_num)
+    //カートの中身を見る
+    public function view()
     {
-
-        //購入した商品情報を取得
-        $product = Product::findOrFail($product_id);
-
-        // カートをクリア
-        //Cart::destroy();
-
-        // 商品ID, 商品名, 個数, 値段, 詳細情報
-        Cart::add([
-            [
-                'id' => $product->product_code,
-                'name' => $product->product_name,
-                'qty' => $buy_num,
-                'price' => $product->product_price,
-                'options' => ['product_detail' => $product->product_detail]
-            ]
-        ]);
-
-        // カートの中身を返す
-        $carts = Cart::content();
-        return view('cart.index')->with(compact('carts'));
+        $cartItems = request()->session()->get("CART",[]);
+        return view('cart.index')->with(compact('cartItems'));
     }
 
-    //カートをリセット
-    public function reset()
+    //カートに商品を追加
+    public function add($product_id)
     {
 
-        Cart::destroy();
+        $items = Product::where('id',[$product_id])->first();
+        if($items){
+            $cartItems = request()->session()->get("CART",[]);
+            $cartItems[] = $items;
+            request()->session()->put("CART",$cartItems);
+        }else{
+            return abort(404);
+        }
+        $cartItems = request()->session()->get("CART",[]);
+        return view('cart.index')->with(compact('cartItems'));
+
+    }
+
+    //カートリセット
+    public function reset()
+    {
+        request()->session()->forget("CART");
+
         return redirect('home'); // 商品一覧に戻る
     }
 }

@@ -19,21 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', function () {
+Route::get('/cart/index', 'CartController@view');
 
-    $products = App\Product::all();
-
-    return view('home')->with(compact('products'));
-
-});
-
-Route::get('/cart/index/{product_id}/{buy_num}', 'CartController@add');
+Route::get('/cart/index/{product_id}', 'CartController@add');
 
 Route::get('/cart/reset', 'CartController@reset');
 
-Route::get('/cart/index', function () {
-
-    $carts = Cart::content();
-    return view('cart.index')->with(compact('carts'));
-
-});

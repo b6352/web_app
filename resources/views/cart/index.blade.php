@@ -3,38 +3,23 @@
 @section('content')
 <div class="container">
     カートの内容
-    <table border="1" aligne="left">
-        <thead>
-        <tr>
-            <th>商品コード</th>
-            <th>商品名</th>
-            <th>商品価格</th>
-            <th>個数</th>
-            <th>商品詳細</th>
-            <th>備考</th>
-            <th>消費税</th>
-            <th>小計</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        @foreach($carts as $cart)
-            <tr>
-                <td>{{ $cart->id }} </td>
-                <td>{{ $cart->name }} </td>
-                <td>{{ $cart->price }} </td>
-                <td>{{ $cart->qty }} </td>
-                <td>{{ $cart->options->product_detail }} </td>
-                <td>{{ $cart->options->product_remarks }} </td>
-                <td>{{ $cart->tax * $cart->qty }} </td>
-                <td>{{ $cart->subtotal  }} </td>
-            </tr>
+    @if($cartItems !== NULL)
+        <?php $total_price = 0; ?>
+        @foreach($cartItems as $item)
+            <br>
+            {{$item->product_name}}
+            {{$item->product_price}}円
+            {{$item->product_detail}}
+            <br>
+            <?php
+                $a = $item->product_price;
+                intval($a);
+                $total_price += $a;
+            ?>
         @endforeach
-        </tbody>
-    </table>
-    <br>
-    合計金額 {{ Cart::total() }}円<br><br>
-
+        合計{{$total_price}}円
+    @endif
 
     {!! link_to('home', '買い物を続ける', ['class' => 'btn btn-primary']) !!}
     <button>購入</button>
