@@ -1,12 +1,4 @@
 @extends('layouts.app')
-@foreach($products as $product)
-    {{$product->id}}
-    {{$product->product_code}}
-    {{$product->product_name}}
-    {{$product->product_price}}
-    {{$product->product_detail}}
-    {{$product->product_image}}
-@endforeach
 @section('cart_view')
     <li><a href="cart/index">カートの中身を見る</a></li>
 @endsection

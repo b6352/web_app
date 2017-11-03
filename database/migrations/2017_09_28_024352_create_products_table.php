@@ -14,7 +14,6 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-
             $table->increments('id')->comment('主キー');
             $table->string('product_code')->comment('商品コード');
             $table->string('product_name')->comment('価格');

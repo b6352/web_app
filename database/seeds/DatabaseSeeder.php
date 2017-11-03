@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use App\Products; // 商品テーブル
+use App\Users;  //userテーブル
 
 // 全体のレコード生成
 class DatabaseSeeder extends Seeder
@@ -17,12 +18,23 @@ class DatabaseSeeder extends Seeder
         Model::reguard();
     }
 }
-// 商品テーブルを生成
+// 商品テーブル生成
 class ProductsTableSeeder extends Seeder
 {
     public function run()
     {
-        // 既存の商品レコードは全削除
+        //既存ユーザ全削除
+        DB::table('products')->delete();
+
+        $users = array(
+            array(
+                'name'=>'souta',
+                'email'=>'souta.gtr.86@gmail.com',
+                'password'=>'123456'
+            )
+        );
+
+        //既存の商品レコード全削除
         DB::table('products')->delete();
 
         $products = array(
@@ -106,7 +118,10 @@ class ProductsTableSeeder extends Seeder
 
         );
 
+
+
         DB::table('products')->insert($products);
+        DB::table('users')->insert($users);
 
     }
 

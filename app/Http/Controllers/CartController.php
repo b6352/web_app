@@ -39,4 +39,14 @@ class CartController extends Controller
 
         return redirect('home'); // 商品一覧に戻る
     }
+
+    //カート指定削除
+    public function delete($index)
+    {
+        $cartItems = request()->session()->get("CART",[]);
+        $cartItems = array_splice($cartItems,$index,1);
+        request()->session()->put("CART",$cartItems);
+
+        return redirect('cart/index')->with(compact('cartItems')); // 商品一覧に戻る
+    }
 }
