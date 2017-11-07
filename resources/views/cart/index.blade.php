@@ -39,8 +39,7 @@
                     <th>{{$item->product_name}}</th>
                     <th>{{number_format($item->product_price)}}円</th>
                     <th>{{$item->product_detail}}</th>
-                    <th>{!! link_to(action('CartController@delete', ['index' => $index]),"削除") !!}
-                    </th>
+                    <th>{!! link_to(action('CartController@delete', ['index' => $index]),"削除") !!}</th>
                 </tr>
                 <?php
                 $index++;

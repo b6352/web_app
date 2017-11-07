@@ -24,12 +24,12 @@ class ProductsTableSeeder extends Seeder
     public function run()
     {
         //既存ユーザ全削除
-        DB::table('products')->delete();
+        DB::table('users')->delete();
 
         $users = array(
             array(
-                'name'=>'souta',
-                'email'=>'souta.gtr.86@gmail.com',
+                'name'=>'',
+                'email'=>'',
                 'password'=>'123456'
             )
         );
