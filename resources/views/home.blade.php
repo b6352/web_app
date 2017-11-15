@@ -14,7 +14,7 @@
                                 <img src="image/{{$product->product_image}}.jpg" alt="" />
                                 <h6>税抜き{{number_format($product->product_price)}}円</h6>
                                 <h6>{{$product->product_detail}}</h6>
-                                <h6>{!! link_to(action('CartController@add', ['id' => $product->id , 'qty' => 1]), "カートに追加") !!}</h6>
+                                <h6>{!! link_to(action('CartController@add', ['id' => $product->id]), "カートに追加") !!}</h6>
                                 <h6></h6>
 
                             </div>

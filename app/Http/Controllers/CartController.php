@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use \Cart;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -11,8 +10,16 @@ class CartController extends Controller
     //カートの中身を見る
     public function view()
     {
-        $cartItems = request()->session()->get("CART",[]);
-        return view('cart.index')->with(compact('cartItems'));
+        $cart_items = request()->session()->get("CART", []);
+
+        $total_price = 0;
+        foreach ($cart_items as $item) {
+            $a = $item->product_price;
+            intval($a);
+            $total_price += $a;
+        }
+
+        return view('cart.index')->with(compact('cart_items','total_price'));
     }
 
     //カートに商品を追加
@@ -21,14 +28,22 @@ class CartController extends Controller
 
         $items = Product::where('id',[$product_id])->first();
         if($items){
-            $cartItems = request()->session()->get("CART",[]);
-            $cartItems[] = $items;
-            request()->session()->put("CART",$cartItems);
+            $cart_items = request()->session()->get("CART",[]);
+            $cart_items[] = $items;
+            request()->session()->put("CART",$cart_items);
         }else{
             return abort(404);
         }
-        $cartItems = request()->session()->get("CART",[]);
-        return view('cart.index')->with(compact('cartItems'));
+        $cart_items = request()->session()->get("CART",[]);
+
+        $total_price = 0;
+        foreach ($cart_items as $item) {
+            $a = $item->product_price;
+            intval($a);
+            $total_price += $a;
+        }
+
+        return view('cart.index')->with(compact('cart_items','total_price'));
 
     }
 
@@ -37,16 +52,19 @@ class CartController extends Controller
     {
         request()->session()->forget("CART");
 
-        return redirect('home'); // 商品一覧に戻る
+        return redirect('cart/index')->with('success','カートの中身をすべて削除しました。'); // 商品一覧に戻る
     }
 
     //カート指定削除
     public function delete($index)
     {
-        $cartItems = request()->session()->get("CART",[]);
-        $cartItems = array_splice($cartItems,$index,1);
-        request()->session()->put("CART",$cartItems);
+        $cart_items = request()->session()->get("CART",[]);
+        $name = $cart_items[$index]->product_name;
+        unset($cart_items[$index]);
+        $cart_items = array_values($cart_items);
+        request()->session()->put("CART",$cart_items);
+        $cart_items = request()->session()->get("CART",[]);
 
-        return redirect('cart/index')->with(compact('cartItems')); // 商品一覧に戻る
+        return redirect('cart/index')->with(compact('cart_items'))->with('success',$name.'を削除しました。'); // 商品一覧に戻る
     }
 }

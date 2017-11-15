@@ -14,19 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/layouts/app', function () {
-    return view('layouts/app');
-});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function() {
 
-Route::get('/cart/index', 'CartController@view');
+    Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/cart/index/{product_id}', 'CartController@add');
+    Route::get('/cart/index', 'CartController@view');
 
-Route::get('/cart/reset', 'CartController@reset');
+    Route::get('/cart/index/{product_id}', 'CartController@add');
 
-Route::get('/cart/{index}', 'CartController@delete');
+    Route::get('/cart/reset', 'CartController@reset');
 
+    Route::get('/cart/{index}', 'CartController@delete');
+
+    Route::get('/confirm', 'BuyController@confirm');
+
+    Route::get('/address', 'BuyController@address');
+
+    Route::post('/edit', 'BuyController@edit');
+
+
+
+});

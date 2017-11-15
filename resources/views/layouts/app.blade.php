@@ -12,6 +12,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        body {
+            font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI","Noto Sans Japanese","ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -36,7 +41,9 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        &nbsp;<li>
+                            <a href="{{url('/home')}}">車一覧</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

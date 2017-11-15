@@ -8,10 +8,14 @@
         <title>Cool Wheels</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Cabin:100,600" rel="stylesheet" type="text/css">
+
 
         <!-- Styles -->
         <style>
+            body {
+                font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI","Noto Sans Japanese","ヒラギノ角ゴ ProN W3", Meiryo, sans-serif;
+            }
+
             html, body {
                 background-color: #fff;
                 color: #636b6f;
