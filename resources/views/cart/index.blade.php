@@ -9,10 +9,10 @@
         <h2>カートの中身はありません</h2>
     @endif
     @if($total_price!==0)
-        <h2>合計{{$total_price}}円</h2>
+        <h2>合計{{number_format($total_price)}}円</h2>
         <br>
         <table class="table">
-            <thread>
+            <thead>
                 <tr>
                     <th></th>
                     <th>車名</th>
@@ -20,15 +20,15 @@
                     <th>詳細</th>
                     <th></th>
                 </tr>
-            </thread>
+            </thead>
             <tbody>
             @foreach($cart_items as $index => $item)
             <tr>
-                <th><img src="/../image/{{$item->product_image}}.jpg"/></th>
-                <th>{{$item->product_name}}</th>
-                <th>{{number_format($item->product_price)}}円</th>
-                <th>{{$item->product_detail}}</th>
-                <th>{!! link_to(action('CartController@delete', ['index' => $index]),"削除") !!}</th>
+                <td><img src="/../image/{{$item->product_image}}.jpg"/></td>
+                <td>{{$item->product_name}}</td>
+                <td>{{number_format($item->product_price)}}円</td>
+                <td>{{$item->product_detail}}</td>
+                <td>{!! link_to(action('CartController@delete', ['index' => $index]),"削除") !!}</td>
             </tr>
             @endforeach
             </tbody>
