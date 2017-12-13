@@ -9,8 +9,9 @@
         <h2>カートの中身はありません</h2>
     @endif
     @if($total_price!==0)
-        <h2>合計{{number_format($total_price)}}円</h2>
-        <br>
+        <h4>カート小計￥{{number_format($total_price)}}</h4>
+        <h4>消費税￥{{number_format($total_price*1.08-$total_price)}}</h4>
+        <h3>合計￥{{number_format($total_price*1.08)}}</h3>
         <table class="table">
             <thead>
                 <tr>
@@ -26,7 +27,7 @@
             <tr>
                 <td><img src="/../image/{{$item->product_image}}.jpg"/></td>
                 <td>{{$item->product_name}}</td>
-                <td>{{number_format($item->product_price)}}円</td>
+                <td>￥{{number_format($item->product_price)}}</td>
                 <td>{{$item->product_detail}}</td>
                 <td>{!! link_to(action('CartController@delete', ['index' => $index]),"削除") !!}</td>
             </tr>
