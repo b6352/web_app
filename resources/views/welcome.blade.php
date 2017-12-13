@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://github.com/b6352">GitHub</a>
+                    <a href="https://github.com/sooooota/web_app">GitHub</a>
                 </div>
             </div>
         </div>
