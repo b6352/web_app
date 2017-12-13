@@ -65,6 +65,6 @@ class CartController extends Controller
         request()->session()->put("CART",$cart_items);
         $cart_items = request()->session()->get("CART",[]);
 
-        return redirect('cart/index')->with(compact('cart_items'))->with('success',$name.'を削除しました。'); // 商品一覧に戻る
+        return redirect('cart/index')->with(compact('cart_items'))->with('success','カートから'.$name.'を削除しました。'); // 商品一覧に戻る
     }
 }
