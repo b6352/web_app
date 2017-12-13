@@ -35,11 +35,13 @@ class BuyController extends Controller
     {
         $messages = [
             'required' => '入力が必須です。',
-            'digits' => '数字7字で入力してください'
+            'regex' => '(数字3文字)-(数字4文字)で入力してください',
+            'min' => '最低1文字です。',
+            'max' => '最高50文字です。'
         ];
 
         $validator = validator::make($request->all(),[
-            'zip' => 'required|digits:7',
+            'zip' => 'required|regex:/^\d{3}\-\d{4}$/',
             'address' => 'required|min:1|max:50'
         ],$messages);
 
@@ -54,6 +56,13 @@ class BuyController extends Controller
             $user->save();
         }
         return redirect('confirm')->with(compact('user'))->with('success', '住所を変更しました。');
+    }
+
+    public function buy()
+    {
+        request()->session()->forget("CART");
+
+        return view('buy');
     }
 
 }
