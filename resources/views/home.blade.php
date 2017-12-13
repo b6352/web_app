@@ -16,7 +16,6 @@
                                 <h6>{{$product->product_detail}}</h6>
                                 <h6>{!! link_to(action('CartController@add', ['id' => $product->id]), "カートに追加") !!}</h6>
                                 <h6></h6>
-
                             </div>
                         </div>
                     </div>
