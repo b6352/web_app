@@ -28,6 +28,8 @@
             <h4>クレジットカード</h4>
         <h3>合計￥{{number_format($total_price*1.08)}}</h3>
         <h3>消費税￥{{number_format($total_price*1.08-$total_price)}}</h3>
-            {!! link_to('/buy','注文確定', ['class' => 'btn btn-primary']) !!}
+            @if($address==='null')
+                {!! link_to('/buy','注文確定', ['class' => 'btn btn-primary']) !!}
+            @endif
     </div>
 @endsection
