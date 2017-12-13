@@ -25,8 +25,8 @@
             <a href="/address" class="link">住所変更</a>
         @endif
         <h3>支払い方法</h3>
-        <h3>請求先住所</h3>
-        発送先住所と同じ
-        <h3>合計{{$total_price}}円</h3>
+            <h4>クレジットカード</h4>
+        <h3>合計{{number_format($total_price)}}円</h3>
+            {!! link_to('/buy','注文確定', ['class' => 'btn btn-primary']) !!}
     </div>
 @endsection
