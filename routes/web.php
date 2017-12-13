@@ -35,6 +35,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/edit', 'BuyController@edit');
 
-
+    Route::get('/buy', 'BuyController@buy');
 
 });
