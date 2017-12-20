@@ -60,11 +60,8 @@ class CartController extends Controller
     {
         $cart_items = request()->session()->get("CART",[]);
         $name = $cart_items[$index]->product_name;
-        unset($cart_items[$index]);
-        $cart_items = array_values($cart_items);
-        request()->session()->put("CART",$cart_items);
-        $cart_items = request()->session()->get("CART",[]);
+        session()->forget("CART.$index");
 
-        return redirect('cart/index')->with(compact('cart_items'))->with('success','カートから'.$name.'を削除しました。'); // 商品一覧に戻る
+        return redirect('cart/index')->with('success','カートから'.$name.'を削除しました。'); // 商品一覧に戻る
     }
 }
