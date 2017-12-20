@@ -3,7 +3,7 @@
 <div class="container">
     <form action="/edit" method="post">
         {{csrf_field()}}
-        <label for="郵便番号">郵便番号(半角ハイフンあり)</label><br>
+        <label for="郵便番号">郵便番号(半角ハイフンなし)</label><br>
         @if($errors->has('zip'))
             <span class="error" style="color:red">{{$errors->first('zip')}}</span><br>
         @endif

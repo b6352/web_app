@@ -28,9 +28,9 @@ class ProductsTableSeeder extends Seeder
 
         $users = array(
             array(
-                'name'=>'',
-                'email'=>'',
-                'password'=>'123456'
+                'name'=>'てすと',
+                'email'=>'a@oic.jp',
+                'password'=>'$2y$10$d7uhRSkwRhIyXODvY0SdWuK43n1D5jpyI7E1g8qD0PsH.CxLDiJOa'
             )
         );
 

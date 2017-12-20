@@ -41,7 +41,7 @@ class BuyController extends Controller
         ];
 
         $validator = validator::make($request->all(),[
-            'zip' => 'required|regex:/^\d{3}\-\d{4}$/',
+            'zip' => 'required|regex:/^\d{3}\\d{4}$/',
             'address' => 'required|min:1|max:50'
         ],$messages);
 
@@ -50,8 +50,9 @@ class BuyController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }else {
+            $zip = substr_replace($request->zip,"-",3,0);
             $user = Auth::user();
-            $user->zip = $request->zip;
+            $user->zip = $zip;
             $user->address = $request->address;
             $user->save();
         }
